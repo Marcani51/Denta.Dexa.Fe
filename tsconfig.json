@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "types": ["vite-plugin-vue-layouts/client", "vite/client"],
+    "lib": ["es6", "dom"]
+  }
+}
