@@ -1,23 +1,15 @@
-module.exports = {
-  important: true,
+import type { Config } from 'tailwindcss'
+import { withTV } from 'tailwind-variants/transformer'
+
+export default withTV({
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
-    '../../packages/**/*.{vue,js,ts,jsx,tsx}',
+    '../../packages/**/*.{vue,js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {
-      colors: {
-        primary: '#2a3593',
-        warning: 'FAAB0514',
-        success: 'rgba(28, 172, 120, 1)',
-        muted: '#999999'
-      },
-      fontFamily: {
-        mulish: ['Mulish', 'sans-serif'],
-      }
-    },
-    plugins: [],
-    important: true
-  }
-}
+    extend: {}
+  },
+  plugins: [],
+  important: true
+} satisfies Config)

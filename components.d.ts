@@ -8,8 +8,30 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    '[...error].page': typeof import('./src/app/[...error].page.vue')['default']
+    'AuthLogin.page': typeof import('./src/app/auth/login.page.vue')['default']
+    'AuthLogout.page': typeof import('./src/app/auth/logout.page.vue')['default']
+    'DashboardIndex.page': typeof import('./src/app/dashboard/index.page.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    'Index.page': typeof import('./src/app/index.page.vue')['default']
+    Navbar: typeof import('./src/components/navbar.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
+    NCard: typeof import('naive-ui')['NCard']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDialogProvider: typeof import('naive-ui')['NDialogProvider']
+    NDropdown: typeof import('naive-ui')['NDropdown']
+    NForm: typeof import('naive-ui')['NForm']
+    NFormItem: typeof import('naive-ui')['NFormItem']
+    NIcon: typeof import('naive-ui')['NIcon']
+    NInput: typeof import('naive-ui')['NInput']
+    NLayout: typeof import('naive-ui')['NLayout']
+    NLayoutSider: typeof import('naive-ui')['NLayoutSider']
+    NMenu: typeof import('naive-ui')['NMenu']
+    NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
+    NSpace: typeof import('naive-ui')['NSpace']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SSvg: typeof import('./src/components/s-svg/index.vue')['default']
   }
 }
