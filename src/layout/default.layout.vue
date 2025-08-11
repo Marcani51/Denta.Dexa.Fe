@@ -26,8 +26,8 @@ const menuOptionsTemplate = [
       }),
   },
   {
-    label: "Customer",
-    key: "/customer",
+    label: "Absent Log",
+    key: "/absent",
     icon: () =>
       h(NIcon, null, {
         default: () =>
@@ -37,29 +37,7 @@ const menuOptionsTemplate = [
       }),
   },
   {
-    label: "Room",
-    key: "/room",
-    icon: () =>
-      h(NIcon, null, {
-        default: () =>
-          h(SSvg, {
-            name: "icon-house",
-          }),
-      }),
-  },
-  {
-    label: "Kost",
-    key: "/kost",
-    icon: () =>
-      h(NIcon, null, {
-        default: () =>
-          h(SSvg, {
-            name: "icon-building",
-          }),
-      }),
-  },
-  {
-    label: "CMS",
+    label: "User management",
     key: "",
     icon: () =>
       h(NIcon, null, {
@@ -123,8 +101,6 @@ const handleLogout = () => {
 watch(
   route,
   (to) => {
-    console.log(to.name);
-    console.log("INI ABOVE TO");
     activeMenu.value = to.path;
     if (
       to.name === "soap" ||
@@ -202,9 +178,9 @@ watch(
               @update:value="onUpdateMenu"
             />
           </div>
-          <button class="w-full" @click="router.push('/order')">
-            <s-svg name="icon-lock" class="w-10 h-10 mx-auto my-2"></s-svg>
-          </button>
+          <!-- <button class="w-full" @click="router.push('/order')">
+            <s-svg name="icon-lock" class="w-10 h-10 mx-auto my-2">Us</s-svg>
+          </button> -->
         </n-space>
       </n-layout-sider>
       <n-layout>

@@ -1,5 +1,6 @@
 export type Root<Datum = unknown> = {
     isSuccessful: boolean
+    code:number
     message: string
     type: string
     errorCode: number
@@ -36,3 +37,31 @@ export type Root<Datum = unknown> = {
     username: string
     password: string
   }
+
+  export type Role={
+    roleName:string
+    isActive:boolean
+    createdBy:string
+    updateBy:string
+    createdDate:Date
+    updateDate:Date
+    access:Access
+  }
+  export type Access={
+    view:boolean
+    edit:boolean
+    absent:boolean
+  }
+
+  export type FieldOption = {
+  label: string
+  value: string | number | boolean
+}
+
+export type FieldConfig = {
+  key: string
+  label: string
+  type: "text" | "select" | "date"
+  required?: boolean
+  options?: FieldOption[]
+}
