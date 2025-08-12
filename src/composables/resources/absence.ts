@@ -7,9 +7,9 @@ const store = useAuthStore()
 const { message } = createDiscreteApi(['message'])
 
 const url = {
-  saveAbsence: () => `http://localhost:5410/v1/absence`,
-  getAllAbsence: () => `http://localhost:5410/v1/absence`,
-  getUserAbsence:(id:any)=>`http://localhost:5410/v1/absence/${id}`
+  saveAbsence: () => `http://103.189.235.175:5410/v1/absence`,
+  getAllAbsence: () => `http://103.189.235.175:5410/v1/absence`,
+  getUserAbsence:(id:any)=>`http://103.189.235.175:5410/v1/absence/${id}`
 }
 
 export type UserAbsenceResponse = Root<Absence>

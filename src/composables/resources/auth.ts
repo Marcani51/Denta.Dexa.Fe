@@ -3,14 +3,14 @@ import type { LoginPayload, Response, Root } from './type'
 import type { User, Role} from './type'
 import axios, { type AxiosResponse } from 'axios'
 const url = {
-  login: () => `http://localhost:5420/v1/login`,
-  getAllUser: () => `http://localhost:5430/v1/user`,
-  updateUser: (id: any) => `http://localhost:5430/v1/user/${id}`,
-  updateRole:(id:any)=>`http://localhost:5430/v1/role/${id}`,
-  saveUser:()=>`http://localhost:5430/v1/user`,
-  saveRole:()=>`http://localhost:5430/v1/role`,
-  getAllrole: () => `http://localhost:5430/v1/role`,
-  getRoleById:(id:any)=>`http://localhost:5430/v1/role/${id}`
+  login: () => `http://103.189.235.175:5420/v1/login`,
+  getAllUser: () => `http://103.189.235.175:5430/v1/user`,
+  updateUser: (id: any) => `http://103.189.235.175:5430/v1/user/${id}`,
+  updateRole:(id:any)=>`http://103.189.235.175:5430/v1/role/${id}`,
+  saveUser:()=>`http://103.189.235.175:5430/v1/user`,
+  saveRole:()=>`http://103.189.235.175:5430/v1/role`,
+  getAllrole: () => `http://103.189.235.175:5430/v1/role`,
+  getRoleById:(id:any)=>`http://103.189.235.175:5430/v1/role/${id}`
 }
 const store = useAuthStore()
 export const logout = () => {
