@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { NModal, NCard, NForm, NFormItem, NInput, NSelect, NDatePicker, NButton, useNotification } from 'naive-ui'
+import {
+  NModal,
+  NCard,
+  NForm,
+  NFormItem,
+  NInput,
+  NSelect,
+  NDatePicker,
+  NButton,
+  useNotification
+} from 'naive-ui'
 import { type FormInst, type FormRules } from 'naive-ui'
 import { EyeOutline, EyeOffOutline } from '@vicons/ionicons5'
 
-const notification=useNotification()
-type FieldType = 'number' | 'text' | 'textarea' | 'date' | 'select'
+const notification = useNotification()
+type FieldType = 'number' | 'text' | 'textarea' | 'date' | 'select' | 'checkbox'
 
 interface FieldConfig {
   key: string
@@ -67,7 +77,7 @@ function handleSubmit() {
       emit('update:show', false)
     } else {
       notification.error({
-        content:'Please fill required field'
+        content: 'Please fill required field'
       })
     }
   })
@@ -127,7 +137,11 @@ function generatePassword() {
                 </div>
               </template>
               <template v-else>
+                <n-checkbox v-if="field.type === 'checkbox'" v-model:checked="formModel[field.key]">
+                  {{ field.label }}
+                </n-checkbox>
                 <component
+                  v-else
                   :is="
                     field.type === 'text' || field.type === 'number'
                       ? NInput
@@ -167,4 +181,3 @@ function generatePassword() {
     </template>
   </n-modal>
 </template>
-

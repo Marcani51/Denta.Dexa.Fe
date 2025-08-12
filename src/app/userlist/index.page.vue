@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { flattenPayload, unflattenPayload } from '@/commonfunction'
 import type { FieldConfig } from '../../composables/resources/type'
+import { useNotification } from 'naive-ui'
 const useGetUser = ref(true)
 const useGetRole = ref(true)
 const roleDb = ref<any>({})
-const roleOptions=ref<any>([])
+const roleOptions = ref<any>([])
 const editPayload = ref<any>({})
 const payload = ref<any>({})
 const dataReady = ref(false)
 const newData = ref(true)
 const showForm = ref(false)
 const store = useAuthStore()
-
+const notification = useNotification()
 function renderDate() {
   payload.value.forEach((item: any) => {
     item.detail.createdDate = new Date(item.createdDate)
@@ -23,14 +24,14 @@ function renderDate() {
 
 function renderRoleOptions() {
   console.log(roleDb.value)
-  if(roleDb.value.length >0){
-    roleDb.value.forEach((item:any) => {
-      const obj={
-        label:item.roleName,
-        value:item.id
+  if (roleDb.value.length > 0) {
+    roleDb.value.forEach((item: any) => {
+      const obj = {
+        label: item.roleName,
+        value: item.id
       }
       roleOptions.value.push(obj)
-    });
+    })
   }
   dataReady.value = true
   useGetRole.value = false
@@ -43,7 +44,7 @@ const fields = computed<FieldConfig[]>(() => [
     key: 'roleId',
     label: 'Role',
     type: 'select',
-    options: roleOptions.value, // ini akan selalu ikut update
+    options: roleOptions.value,
     required: true
   },
   { key: 'email', label: 'Email', type: 'text', required: true },
@@ -52,8 +53,8 @@ const fields = computed<FieldConfig[]>(() => [
     label: 'Active',
     type: 'select',
     options: [
-      { label: 'Yes', value: "true" },
-      { label: 'No', value: "false" }
+      { label: 'Yes', value: 'true' },
+      { label: 'No', value: 'false' }
     ],
     required: true
   },
@@ -74,11 +75,12 @@ const fields = computed<FieldConfig[]>(() => [
 ])
 
 function handleEdit(payload: any) {
+  console.log(payload)
   if (payload.id != undefined) newData.value = false
   const flatPayload = flattenPayload(payload)
-  const flatPayloadFinal={
+  const flatPayloadFinal = {
     ...flatPayload,
-    isActive:flatPayload.isActive===true ? "true" :"false"
+    isActive: flatPayload.isActive === true ? 'true' : 'false'
   }
   editPayload.value = flatPayloadFinal
   showForm.value = true
@@ -97,8 +99,22 @@ async function handleSubmit(data: any) {
       updateBy: store.user?.detail.name
     }
   }
-  if (newData.value) await saveUserApi(payloadFinal)
-  else await updateUserApi(payloadFinal, dataFinal.id)
+  try {
+    console.log(newData.value)
+    console.log("WEW")
+    if (newData.value===true) await saveUserApi(payloadFinal)
+    else await updateUserApi(payloadFinal, dataFinal.id)
+    notification.success({
+      content:"Success submit data",
+      duration:1000
+    })
+  } catch (er) {
+    notification.error({
+      content: 'Failed submit data',
+      duration:1000
+    })
+  }
+
   useGetUser.value = true
 }
 
@@ -125,7 +141,7 @@ useRoleData({
 <template>
   <div class="w-[100%] h-[100%]">
     <n-space class="p-4" vertical :size="24">
-      <ssection header> <h1 class="font-bold text-[#006DA4]">USER LIST</h1></ssection>
+      <section header> <h1 class="font-bold text-[#006DA4]">USER LIST</h1></section>
       <section main>
         <userlist-components-usertable
           :data="payload"

@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-row justify-between">
     <div class="flex flex-row gap-2">
-      <n-input @input="onSearch" placeholder="Search..." class="w-[250px]"></n-input>
+     <n-input
+        v-model:value="searchQuery"
+        @input="onSearch"
+        placeholder="Search by name..."
+        class="w-[250px]"
+      />
       <n-button @click="showModal">Add User Manual</n-button>
     </div>
     <n-select
@@ -122,14 +127,17 @@ const payload = ref<any>({})
 const hoveredIndex = ref<number | null>(null)
 const modalConfirmation = ref(false)
 const pendingToggle = ref<{ item: any; value: boolean } | null>(null)
-
+const originalData = ref<any>([])
+const searchQuery = ref('')
 const notification = useNotification()
+
 const props=defineProps<{
   data:any
 }>()
 
 watch(()=>props.data,(value)=>{
   dataTable.value=value
+  originalData.value=value
 })
 const emit=defineEmits<{
     (e: 'update:viewData', value: any): void
@@ -211,7 +219,17 @@ async function changeStatus() {
   }
   modalConfirmation.value = false
 }
-function onSearch() {}
+function onSearch(value: string) {
+  searchQuery.value = value
+  if (!value) {
+    dataTable.value = [...originalData.value]
+  } else {
+    const lower = value.toLowerCase()
+    dataTable.value = originalData.value.filter((item: any) =>
+      item.detail.name.toLowerCase().includes(lower)
+    )
+  }
+}
 </script>
 
 <style scoped>

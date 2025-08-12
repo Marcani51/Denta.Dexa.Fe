@@ -12,8 +12,6 @@ import { useAuthStore } from './auth.store'
 import { type User, type LoginPayload, useLogin } from '@/composables'
 import { SSvg } from '@/components'
 
-const showModalKost = ref(false)
-const kostSelect = ref()
 const route = useRoute()
 
 const query = computed<any>(() => route.query)
@@ -90,7 +88,7 @@ const handleSubmit = async () => {
     <n-card class="max-w-sm shadow-sm py-32 px-5">
       <div class="flex justify-center">
         <!-- <img src="@/assets/images/Logo_Rehab.png" /> -->
-        <span class="text-red-500 font-bold">Employee Management App</span>
+        <span class="text-[#006DA4] font-bold">Employee Management App</span>
       </div>
       <n-form
         ref="formRef"
@@ -131,11 +129,6 @@ const handleSubmit = async () => {
                 </n-icon>
               </template>
             </n-input>
-            <!-- <div class="absolute right-0 top-10 flex justify-end">
-              <n-button text tag="a" target="_blank" type="primary" :on-click="onShowForgotpass">
-                <span class="font-bold uppercase">Lupa password?</span>
-              </n-button>
-            </div> -->
           </n-form-item>
         </fieldset>
         <n-button :loading="loginRes.isLoading.value" block round attr-type="submit" type="primary">

@@ -47,6 +47,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getCurrentWatcher: typeof import('vue')['getCurrentWatcher']
+  const getRoleByIdApi: typeof import('./src/composables/resources/auth')['getRoleByIdApi']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -99,9 +100,11 @@ declare global {
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const renderFinalPayload: typeof import('./src/app/userlist/commonfunction')['renderFinalPayload']
+  const renderRoleBody: typeof import('./src/app/userlist/commonfunction')['renderRoleBody']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const saveRoleApi: typeof import('./src/composables/resources/auth')['saveRoleApi']
   const saveUserApi: typeof import('./src/composables/resources/auth')['saveUserApi']
   const saveUserUserApi: typeof import('./src/composables/resources/auth')['saveUserUserApi']
   const shallowReactive: typeof import('vue')['shallowReactive']
@@ -126,6 +129,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updateRoleApi: typeof import('./src/composables/resources/auth')['updateRoleApi']
   const updateUser: typeof import('./src/composables/resources/auth')['updateUser']
   const updateUserApi: typeof import('./src/composables/resources/auth')['updateUserApi']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
@@ -334,7 +338,7 @@ declare global {
   export type { LoginResponse, UserDataResponse, RoleDataResponse } from './src/composables/resources/auth'
   import('./src/composables/resources/auth')
   // @ts-ignore
-  export type { Root, Response, Detail, User, LoginPayload, Role, Access, FieldOption, FieldConfig } from './src/composables/resources/type'
+  export type { Root, Response, Detail, User, LoginPayload, Role, Access, DetailAbsence, Absence, FieldOption, FieldConfig } from './src/composables/resources/type'
   import('./src/composables/resources/type')
   // @ts-ignore
   export type { Config, HttpMutationOptions } from './src/composables/http/index'
@@ -387,6 +391,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
+    readonly getRoleByIdApi: UnwrapRef<typeof import('./src/composables/resources/auth')['getRoleByIdApi']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -439,9 +444,11 @@ declare module 'vue' {
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly renderFinalPayload: UnwrapRef<typeof import('./src/app/userlist/commonfunction')['renderFinalPayload']>
+    readonly renderRoleBody: UnwrapRef<typeof import('./src/app/userlist/commonfunction')['renderRoleBody']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly saveRoleApi: UnwrapRef<typeof import('./src/composables/resources/auth')['saveRoleApi']>
     readonly saveUserApi: UnwrapRef<typeof import('./src/composables/resources/auth')['saveUserApi']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
@@ -465,6 +472,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateRoleApi: UnwrapRef<typeof import('./src/composables/resources/auth')['updateRoleApi']>
     readonly updateUserApi: UnwrapRef<typeof import('./src/composables/resources/auth')['updateUserApi']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>

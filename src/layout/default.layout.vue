@@ -12,7 +12,7 @@ const collapsed = ref<boolean>(true);
 const router = useRouter();
 const route = useRoute();
 const auth = useAuthStore();
-
+const roleData = ref<any>({}); 
 const menuOptionsTemplate = [
   {
     label: "Dashboard",
@@ -146,6 +146,38 @@ watch(
   },
   { flush: "pre", immediate: true, deep: true }
 );
+
+onMounted(async () => {
+  if (auth.user?.roleId) {
+    try {
+      const res = await getRoleByIdApi(auth.user.roleId);
+      roleData.value = res;
+
+      const { view, edit } = roleData.value.access || {};
+      if (!view || !edit) {
+        menuOptions.value = [
+          {
+            label: "Dashboard",
+            key: "/dashboard",
+            icon: () =>
+              h(NIcon, null, {
+                default: () =>
+                  h(SSvg, {
+                    name: "icon-lab",
+                  }),
+              }),
+          }
+        ];
+      } else {
+        menuOptions.value = menuOptionsTemplate;
+      }
+
+    } catch (err) {
+      console.error("Gagal ambil role:", err);
+    }
+  }
+});
+
 </script>
 <template>
   <n-space vertical>

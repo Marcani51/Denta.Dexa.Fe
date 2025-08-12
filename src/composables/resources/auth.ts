@@ -6,8 +6,11 @@ const url = {
   login: () => `http://localhost:5420/v1/login`,
   getAllUser: () => `http://localhost:5430/v1/user`,
   updateUser: (id: any) => `http://localhost:5430/v1/user/${id}`,
+  updateRole:(id:any)=>`http://localhost:5430/v1/role/${id}`,
   saveUser:()=>`http://localhost:5430/v1/user`,
-  getAllrole: () => `http://localhost:5430/v1/role`
+  saveRole:()=>`http://localhost:5430/v1/role`,
+  getAllrole: () => `http://localhost:5430/v1/role`,
+  getRoleById:(id:any)=>`http://localhost:5430/v1/role/${id}`
 }
 const store = useAuthStore()
 export const logout = () => {
@@ -69,10 +72,49 @@ export async function updateUserApi(data: any, param: any) {
 
   return response.data as UserDataResponse
 }
+
+export async function updateRoleApi(data: any, param: any) {
+  const token = store.token
+
+  const response = await metaAxiosInstance.put(url.updateRole(param), data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return response.data as RoleDataResponse
+}
+
+
+
 export async function saveUserApi(data: any) {
   const token = store.token
 
   const response = await metaAxiosInstance.post(url.saveUser(), data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return response.data as UserDataResponse
+}
+
+export async function saveRoleApi(data: any) {
+  const token = store.token
+
+  const response = await metaAxiosInstance.post(url.saveRole(), data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return response.data as RoleDataResponse
+}
+
+export async function getRoleByIdApi(param: any) {
+  const token = store.token
+
+  const response = await metaAxiosInstance.get(url.getRoleById(param), {
     headers: {
       Authorization: `Bearer ${token}`
     }
