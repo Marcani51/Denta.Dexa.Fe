@@ -87,7 +87,7 @@ useRoleData({
           v-model:show="showForm"
           :fields="fields"
           :payload="editPayload"
-          @submit="(data) => handleSubmit(data)"
+          @submit="(data:any) => handleSubmit(data)"
         >
 
         </modal-modalform>

@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import { NInput, NTable, NImage } from 'naive-ui'
 
-const BASE_URL = 'http://localhost:5410'
+const BASE_URL = 'http://103.189.235.175:5410'
 
 // Props atau data awal
 const props = defineProps<{

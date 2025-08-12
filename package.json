@@ -19,6 +19,7 @@
     "accounting-js": "^2.0.3",
     "autoprefixer": "^10.4.21",
     "axios": "^1.11.0",
+    "jsdom": "^26.1.0",
     "naive-ui": "^2.42.0",
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.4.1",

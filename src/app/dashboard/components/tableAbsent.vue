@@ -6,7 +6,7 @@ const props = defineProps<{
   data: any
 }>()
 
-const BASE_URL = 'http://localhost:5410'
+const BASE_URL = 'http://103.189.235.175:5410'
 const dataAbsence = ref<any>([])
 const detailUser=ref<any>({})
 watch(
